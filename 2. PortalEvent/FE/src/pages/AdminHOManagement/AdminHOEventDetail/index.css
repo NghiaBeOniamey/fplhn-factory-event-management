@@ -1,0 +1,60 @@
+.containers {
+    font-size: 50px;
+}
+
+.status13Color {
+    font-size: 20px;
+    color: green;
+}
+
+.status2Color {
+    font-size: 20px;
+    color: rgb(193, 43, 6);
+}
+
+.status4Color {
+    font-size: 20px;
+    color: rgb(237, 141, 6);
+}
+
+.status5Color {
+    font-size: 20px;
+    color: rgb(89, 88, 86);
+}
+
+.col-left {
+    margin-right: 15px;
+}
+
+
+.disabled {
+    pointer-events: none;
+    user-select: none;
+    opacity: 1; /* Optional: Thay đổi độ mờ nếu bạn muốn */
+}
+  
+.ant-card-head-title {
+    font-size: 20px;
+}
+
+.ant-table-tbody > tr > td {
+    height: 40px; /* Đặt chiều cao mong muốn */
+}
+  
+.bullet-list-item {
+    list-style-type: disc; /* Sử dụng dấu chấm (disk) bên trái của mỗi mục danh sách */
+    margin-left: 25px; /* Khoảng cách giữa dấu chấm và nội dung mục danh sách */
+}
+  
+.form {
+    margin-bottom: 0px;
+}
+
+.text-color {
+    color: green;
+}
+.gridStyle {
+    width: 100%;
+    text-align: center;
+}
+

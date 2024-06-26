@@ -1,0 +1,21 @@
+.btn-reply-delete {
+   cursor: pointer;
+}
+
+.title-comment {
+   font-family: sans-serif;
+   color: #172b4d;
+}
+
+.btn-post-comment {
+   float: right;
+   background-color: #0098d1;
+   margin: 24px 0px 24px 0px;
+}
+
+.btn-see-more {
+   width: 100%;
+   background-color: white;
+   font-weight: bold;
+   color: #0098d1;
+}

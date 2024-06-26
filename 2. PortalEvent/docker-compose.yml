@@ -1,0 +1,206 @@
+version: "2.2"
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=a
+      - MYSQL_HOST=db
+    ports:
+      - "3333:3306"
+    volumes:
+      - /path/on/host:/var/lib/mysql
+
+  fplspscore.api:
+    image: thonlnph26557/fplspscoreapi:1301220923
+    #image: thonlnph26557/fplspscoreapi:1301220923
+#    build:
+#      context: .
+#      dockerfile: FPLSPScore.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    ports:
+      - "1002:80"
+      - "1001:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  fplspscore.blazor:
+    image: thonlnph26557/fplspscoreblazor:1301220923
+#    build:
+#      context: .
+#      dockerfile: FPLSPScore.Blazor/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    ports:
+      - "1003:80"
+      - "1000:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  consumer_api:
+    container_name: consumer_api
+    image: huynqph26782/udpm-portal-articles:consumer_api
+    ports:
+      - "6792:6792"
+    environment:
+
+      SPRING_RABBITMQ_HOST: rabbitmqnametest
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      PATH_FILE_CSV: /temp/
+    volumes:
+      - /path/on/host:/temp
+
+  api_article:
+    container_name: api_article
+    image: huynqph26782/udpm-portal-articles:back-end
+    ports:
+      - "6868:6868"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/article_project
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: a
+      SPRING_JPA_HIBERNATE.DDL-AUTO: none
+      DOMAIN_IDENTITY: https://103.56.161.210:5001
+      DOMAIN_SOCKET: http://103.56.161.210:3456/
+      SPRING_RABBITMQ_HOST: rabbitmqnametest
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      DOMAIN_RABBIT_LISTEN: http://103.56.161.210:6792
+      SERVER_SSL_KEY-STORE: /https/aspnetapp.pfx
+      SERVER_SSL_KEY-STORE-PASSWORD: password
+
+    volumes:
+      - /path/on/host:/temp
+      - ssl-volume:/https
+
+  client_article:
+    image: huynqph26782/udpm-portal-articles:font-end
+    container_name: client_article
+    ports:
+      - "3456:80"
+    environment:
+      - REACT_APP_API_URL=https://localhost:5555/api
+      - REACT_APP_CONNECT_IDENTITY=https://localhost:5000/
+      - SSL_PFX_FILE= /https/certificate.pfx
+      - SSL_PFX_PASSWORD=p
+
+  
+  fplsp_identity.api:
+    image: nguyencongthang2509/fplsp_identity.api
+    # build:
+    #   context: .
+    #   dockerfile: FPLSP_Identity.API/Dockerfile
+    container_name: fplsp_identity.api
+    ports: 
+      - "5001:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro        
+      - ssl-volume:/https
+
+  fplsp_identity.web: 
+    container_name: identity_web  
+    image: thonlnph26557/fplspidentityweb:vps
+
+    # build:
+    #   context: .
+    #   dockerfile: FPLSP_Identity.WEB/Dockerfile
+    ports: 
+      - "5000:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  api_event:
+    container_name: api_event
+    image: huynqph26782/udpm-portal-articles:back-end-event
+    ports:
+      - "1626:1626"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/portal_event
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: a
+      SPRING_JPA_HIBERNATE.DDL-AUTO: none
+      DOMAIN_IDENTITY: https://103.56.161.210:5001
+      DOMAIN.COMSUMER: http://103.56.161.210:6792
+      SPRING_RABBITMQ_HOST: rabbitmqnametest
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+     
+  web_event:
+    container_name: web_event
+    image: huynqph26782/udpm-portal-articles:font-end-event
+    build:
+      args:
+        REACT_APP_HOST_IP_ADDRESS: http://103.56.161.210:1626/
+        REACT_APP_IDENTITY_WEB: https://localhost:5000/
+    ports:
+      - "9999:80"
+
+  lab-report-app-api:
+    container_name: springboot
+    image: nguyencongthang2509/lab-report-app-api
+    depends_on:
+      - mysql
+      - fplsp_identity.api
+    ports:
+      - "2509:2509"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/lab_report_app
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: a
+      SPRING_JPA_HIBERNATE.DDL-AUTO: none
+      DOMAIN_IDENTITY:  https://103.56.161.210:5001
+      DOMAIN_SOCKET: http://103.56.161.210:3456/
+      DOMAIN_RABBIT_LISTEN: http://103.56.161.210:6792
+      SERVER_SSL_KEY-STORE: /https/aspnetapp.pfx
+      SERVER_SSL_KEY-STORE-PASSWORD: password
+
+    volumes:
+      - /path/on/host:/temp
+      - ssl-volume:/https
+  lab-report-app-web:
+    image: nguyencongthang2509/lab-report-app
+    container_name: client
+    ports:
+      - "6262:80"
+    environment:
+      - REACT_APP_API_URL=https://103.56.161.210:2509
+      - REACT_APP_CONNECT_IDENTITY=https://103.56.161.210:5000
+      - SSL_PFX_FILE=./aspnetapp.pfx
+      - SSL_PFX_PASSWORD=password
+
+networks:
+  default:
+    external: true
+    name: ptpm-networks
+volumes:
+  ssl-volume:

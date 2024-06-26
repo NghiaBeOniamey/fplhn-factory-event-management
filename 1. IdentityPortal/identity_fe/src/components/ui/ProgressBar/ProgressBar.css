@@ -1,0 +1,52 @@
+#loading-bar {
+  background: #647a87;
+  height: 2px;
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+}
+#loading-bar::before {
+  background: #586472;
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px;
+  border-radius: 4px;
+  animation: loading 10s linear forwards;
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  5% {
+    width: 20%;
+  }
+  15% {
+    width: 90%;
+  }
+  25% {
+    width: 90%;
+  }
+  30% {
+    width: 93.333%;
+  }
+  45% {
+    width: 93.333%;
+  }
+  50% {
+    width: 95%;
+  }
+  65% {
+    width: 95%;
+  }
+  70% {
+    width: 96.6667%;
+  }
+  95% {
+    width: 96.6667%;
+  }
+  100% {
+    width: 98.333%;
+  }
+}

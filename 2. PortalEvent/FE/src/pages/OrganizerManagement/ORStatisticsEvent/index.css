@@ -1,0 +1,45 @@
+.div-hehe {
+    display: flex;
+    flex-direction: column;
+}
+
+.div-top {
+    display: flex;
+    border: 1px solid #e0e1e1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    padding: 20px;
+}
+
+.div-container-ORSEChartTotalEvents {
+    border: 1px solid #e0e1e1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    padding: 20px;
+}
+.div-1 {
+    width: 25%;
+}
+
+.div-container-chartTop-n {
+    width: 35%;
+    margin-left: 5%;
+}
+
+.div-container-doughnutChart {
+    width: 30%;
+    margin-left: 5%;
+}
+.div-sum-event {
+    border: 1px solid #e0e1e1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #3aab58;
+    padding: 20px;
+    height: 50%;
+    margin-top: 45px;
+}

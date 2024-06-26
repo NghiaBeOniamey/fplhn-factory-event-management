@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Nunito" !important;
+  src: url("../font/Nunito-VariableFont_wght.ttf") format("woff2") !important;
+}
+
+#root {
+  font-family: "sans-serif", serif !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #052c65 !important;
+}
+
+.ant-pagination-item-active a {
+  color: #052c65 !important;
+}
+
+.fixed-button {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.fixed-button:hover {
+  opacity: 1;
+}

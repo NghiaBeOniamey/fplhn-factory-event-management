@@ -1,0 +1,47 @@
+.table-hire-design-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.title-hire-design {
+  margin: 10px 20px 10px;
+}
+
+body {
+  background-color: #f0f0f0; /* Màu xám */
+}
+.button-hire-design {
+  margin-left: auto;
+}
+.phan-trang {
+  display: flex;
+  justify-content: center;
+}
+.row {
+  padding: 0 30px; /* Padding ở phần trái và phải là 10px, các cạnh còn lại không có padding */
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between; /* Đặt khoảng cách giữa các phần tử */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.size-input {
+  width: 30%;
+}
+
+.style-button {
+  padding-left: 10px;
+}
+
+.ant-table-cell .hire-design-name-location-cell {
+  word-wrap: break-word !important;
+  width: 300px;
+}
+
+.ant-table-cell .hire-design-detail-location-cell {
+  word-wrap: break-word !important;
+  width: 550px;
+}

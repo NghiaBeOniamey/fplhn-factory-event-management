@@ -1,0 +1,35 @@
+.wrapper {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.fc-header-toolbar .fc-button {
+    background-color: #1677ff; /* Thay đổi yourColor thành mã màu bạn muốn */
+    color: #ffffff; /* Thay đổi thành màu chữ phù hợp */
+    border-color: #005de5; /* Thay đổi yourBorderColor thành màu viền bạn muốn */
+}
+
+.fc-header-toolbar .fc-button:hover {
+    background-color: #0759cb; /* Thay đổi yourColor thành mã màu bạn muốn */
+    color: #ffffff; /* Thay đổi thành màu chữ phù hợp */
+    border-color: #005de5; /* Thay đổi yourBorderColor thành màu viền bạn muốn */
+}
+
+.fc-header-toolbar .fc-button-active {
+    background-color: #0759cb !important; /* Thay đổi yourColor thành mã màu bạn muốn */
+    color: #ffffff; /* Thay đổi thành màu chữ phù hợp */
+    border-color: #004d94; /* Thay đổi yourBorderColor thành màu viền bạn muốn */
+}
+
+.fc-event-title-container {
+    width: 45% !important;
+    margin-right: 0;
+}
+
+.fc-event-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+}

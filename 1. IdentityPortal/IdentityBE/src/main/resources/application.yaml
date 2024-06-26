@@ -1,0 +1,90 @@
+app:
+  default-target-url-identity: ${FRONTEND_URL:http://localhost:3000}
+  default-target-url-identity-error: ${FRONTEND_URL:http://localhost:3000}/error
+  default-target-url-identity-staff: ${FRONTEND_URL:http://localhost:3000}/redirect
+  default-target-url-identity-student: ${FRONTEND_URL:http://localhost:3000}/student
+  default-identity-name: "Quản lý phân quyền"
+  default-identity-code: "QLPQ"
+
+client:
+  secret:
+    length: 20
+
+cron-job:
+  time: 0/30 * * * * ?
+
+file:
+  upload-excel: ${EXCEL_FOLDER}
+  upload-excel-role: ${EXCEL_FOLDER_ROLE}
+
+mail:
+  to:
+    send: ${MAIL_TO_SEND:minhhieu8723@gmail.com}
+
+server:
+  port: ${SERVER_PORT:5000}
+
+spring:
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    password: ${DATABASE_PASSWORD}
+    url: jdbc:sqlserver://${DATABASE_HOSTNAME}:1433;databaseName=${DATABASE_NAME:identity_project};encrypt=true;trustServerCertificate=true
+    username: ${DATABASE_USERNAME}
+  jpa:
+    hibernate:
+      ddl-auto: ${DATABASE_DDL_AUTO:update}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        show_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+        type:
+          descriptor:
+            sql:
+              NVARCHAR: org.hibernate.type.descriptor.sql.NVarcharTypeDescriptor
+          nodeValue: override
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    password: tpzh lfcr nbje xbey
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: hotrokythuatudpm@gmail.com
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:1033137380054-ftkufqnt78g6579n2f0i03pl078qpof1.apps.googleusercontent.com}
+            client-secret: ${GOOGLE_CLIENT_SECRET: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}
+            redirect-uri: '{baseUrl}/oauth2/callback/{registrationId}'
+            scope: email, profile
+    user:
+      name: ${ADMIN_PASSWORD:admin}
+      password: ${ADMIN_PASSWORD:admin}
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+springdoc:
+  swagger-ui:
+    path: api/swagger/swagger-ui.html
+  enable-default-api-docs: true
+  api-docs:
+    path: /api/swagger

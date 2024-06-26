@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  /* Đảm bảo trang có chiều cao 100% của viewport */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.background-permission {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  /* Cần đặt vị trí của phần tử là tương đối để sử dụng lớp ::before */
+}
+
+.background-permission::before {
+  content: "";
+  background-image: url("../../assets/img/bg-3.jpg");
+  opacity: 0.8;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  /* Đảm bảo hình ảnh nền đầy màn hình */
+  background-repeat: no-repeat;
+  /* Ngăn lặp lại hình ảnh */
+  filter: blur(1px);
+  /* Điều này sẽ làm mờ hình ảnh nền */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* Đặt lớp nền ở phía dưới của nội dung */
+}
+
+.footer {
+  height: "120px";
+  color: #192041;
+  text-align: center;
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  z-index: 1000;
+  font-size: "1.3rem";
+  color: "#172b4d !important";
+}
+
+
+
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.address {
+  font-family: "Nunito";
+  font-weight: normal;
+}

@@ -1,0 +1,18 @@
+package com.portalevent.core.adminho.eventclosedmanagement.repository;
+
+import com.portalevent.core.adminho.eventclosedmanagement.model.response.AdminHOecPropsResponse;
+import com.portalevent.repository.SemesterRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface AdminHOdecSemesterRepository extends SemesterRepository {
+
+    @Query(value = """
+            SELECT o.id AS id, o.name AS name FROM Semester o
+            """, nativeQuery = true)
+    List<AdminHOecPropsResponse> getAllSemester();
+
+}

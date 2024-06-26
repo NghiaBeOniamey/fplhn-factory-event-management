@@ -1,0 +1,16 @@
+.warning-dev-tool-open {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  z-index: 9999;
+}
+
+.warning-dev-tool-open__content {
+  max-width: 1200px;
+  margin: 0 auto;
+}

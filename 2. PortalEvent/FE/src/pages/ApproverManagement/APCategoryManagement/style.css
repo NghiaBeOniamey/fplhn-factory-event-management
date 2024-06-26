@@ -1,0 +1,33 @@
+.table-category-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title-category {
+  margin: 0px 10px 10px;
+}
+
+body {
+  background-color: #f0f0f0; /* Màu xám */
+}
+.button-category {
+  margin-left: auto;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.phan-trang {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  padding: 0 30px; /* Padding ở phần trái và phải là 10px, các cạnh còn lại không có padding */
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between; /* Đặt khoảng cách giữa các phần tử */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}

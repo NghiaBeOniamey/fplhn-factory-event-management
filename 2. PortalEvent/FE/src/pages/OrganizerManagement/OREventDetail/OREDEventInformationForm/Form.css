@@ -1,0 +1,35 @@
+.form_left {
+    float: left;
+    width: 45%;
+}
+.form_right {
+    float: right;
+    width: 45%;
+}
+
+.horizontal-layout {
+    /* width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 20px; */
+}
+.btn-form-event {
+    background-color: #0098d1;
+    margin-right: 7px;
+}
+.div-event-status {
+    border: 1px solid #e0e1e1;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    background-color: white;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 7px 50px 7px 50px;
+    height: 70px;
+}
+
+.disabled {
+   pointer-events: none;
+   user-select: none;
+   opacity: 1; /* Optional: Thay đổi độ mờ nếu bạn muốn */
+}
